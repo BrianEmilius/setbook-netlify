@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import { Router } from "@reach/router"
+import RunSet from "./views/RunSet"
+import CreateUser from "./views/CreateUser"
+import LogIn from "./views/LogIn"
+import TokenContext from "./contexts/TokenContext"
+import { useState } from "react"
+import Home from "./views/Home"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	var tokenState = useState(null)
+
+	return (
+		<div className="App">
+			<TokenContext.Provider value={tokenState}>
+					<Router>
+						{(function () {
+							if (tokenState[0] !== null) {
+								return (<>
+									<Home path="/home" />
+									<RunSet path="/runset/:exercise" />
+								</>)
+							}
+						})()}
+						<LogIn default path="/login" />
+						<CreateUser path="/create-user" />
+					</Router>
+			</TokenContext.Provider>
+		</div>
+	);
 }
-
-export default App;
