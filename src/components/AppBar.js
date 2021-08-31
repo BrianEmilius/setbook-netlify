@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 
 export default function ApplicationBar({back}) {
 	return (
-		<AppBar position="static">
+		<AppBar position="fixed">
 			<Toolbar style={{display:"grid", gridTemplateColumns: "repeat(2, 1fr)"}}>
 				{back && <IconButton edge="start" color="inherit" onClick={() => navigate(back)} style={{justifySelf: "start"}}>
 					<ArrowBack />

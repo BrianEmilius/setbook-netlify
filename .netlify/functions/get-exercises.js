@@ -5,7 +5,7 @@ const { logDOM } = require("@testing-library/react")
 const { ObjectId } = require("mongodb")
 
 async function getExercises(db, user) {
-	var result = await db.collection("exercises").find({ user: ObjectId(user) }).toArray()
+	var result = await db.collection("exercises").find({ user: ObjectId(user) }).sort({ title: 1 }).toArray()
 
 	return {
 		statusCode: 200,

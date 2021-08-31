@@ -1,15 +1,17 @@
-import { Button, Typography } from "@material-ui/core"
+import { Button, Container, Typography } from "@material-ui/core"
 import { useState, useEffect, useContext } from "react"
 import Record from "../components/Record"
 import Timer from "react-compound-timer"
 import axios from "axios"
 import AppBar from "../components/AppBar"
 import TokenContext from "../contexts/TokenContext"
+import PrevSetCard from "../components/PrevSetCard"
 
 export default function Home({exercise}) {
 	var [inputFields, setInputFields] = useState([])
 	var [running, setRunning] = useState(false)
 	var [exerciseObject, setExercise] = useState([])
+	var [prevSet, setPrevSet] = useState({})
 	var [token] = useContext(TokenContext)
 
 	function handleSubmit(e) {
@@ -60,6 +62,13 @@ export default function Home({exercise}) {
 			}
 		})
 			.then(res => setExercise(res.data))
+
+		axios.get(`/.netlify/functions/get-previous-set?exercise=${exercise}`, {
+			headers: {
+				authorization: token
+			}
+		})
+			.then(res => setPrevSet(res.data))
 	}, [exercise, token])
 
 
@@ -67,7 +76,12 @@ export default function Home({exercise}) {
 		<div>
 			<AppBar back="/home" />
 			<form onSubmit={handleSubmit} style={{display:"flex",flexDirection:"column",justifyContent:"space-between",padding:"1em"}}>
-				<Typography variant="body1">{exerciseObject.title}</Typography>
+				<Typography variant="h6" component="h1">{exerciseObject.title}</Typography>
+				<Container style={{display: "flex"}}>
+					{prevSet.sets ? 
+					prevSet.sets.map((set, i) => <PrevSetCard key={i} set={set} />)
+					: <Typography>You have not done this exercise before</Typography>}
+				</Container>
 				<div style={{display:"flex",overflowX:"scroll",margin:"1em 0",minHeight:"96px"}}>
 					{inputFields.map((inputField, index) => (
 						<Record inputField={inputField} index={index} key={index} inputFields={inputFields} setInputFields={setInputFields} />
