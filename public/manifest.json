@@ -3,8 +3,8 @@
   "name": "SetBook",
   "description": "Record and track your progressive overload in the gym",
   "start_url": ".",
-  "background_color": "#ff0000",
-  "theme_color": "#ff0000",
+  "background_color": "#3f51b5",
+  "theme_color": "#3f51b5",
   "display": "standalone",
   "orientation": "portrait",
   "icons": [
