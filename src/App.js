@@ -17,7 +17,7 @@ export default function App() {
 
 		var setToken = tokenState[1];
 		setToken(cookie)
-	}, [])
+	}, [tokenState])
 
 	return (
 		<div className="App">
