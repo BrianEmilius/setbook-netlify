@@ -90,8 +90,8 @@ export default function Home({exercise}) {
 				<Timer timeToUpdate="10" onReset={resetTimer}>
 					{({reset}) => (
 						<>
-						{!running && <Button variant="contained" color="primary" type="button" onClick={reset}>Start</Button>}
-						{running && <Button type="button" variant="contained" color="secondary" onClick={reset}>Stop</Button>}
+						{!running && <Button variant="contained" color="primary" size="large" style={{padding: "2em 0"}} type="button" onClick={reset}>Start</Button>}
+						{running && <Button type="button" variant="contained" size="large" color="secondary" style={{padding: "2em 0"}} onClick={reset}>Stop</Button>}
 						<div style={{textAlign:"center",fontSize:"300%"}}>
 							<Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />:<Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
 						</div>

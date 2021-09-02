@@ -1,11 +1,11 @@
-import { Button, Container, FormGroup, Typography, TextField, Card, Fab, Backdrop } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
-import { Link } from "@reach/router";
-import axios from "axios";
-import { useState } from "react";
-import { useContext, useEffect } from "react";
-import ApplicationBar from "../components/AppBar";
-import TokenContext from "../contexts/TokenContext";
+import { Button, Container, FormGroup, Typography, TextField, Card, Fab, Backdrop } from "@material-ui/core"
+import { Add } from "@material-ui/icons"
+import { Link } from "@reach/router"
+import axios from "axios"
+import { useState } from "react"
+import { useContext, useEffect } from "react"
+import ApplicationBar from "../components/AppBar"
+import TokenContext from "../contexts/TokenContext"
 
 export default function Home() {
 	var [token] = useContext(TokenContext)
