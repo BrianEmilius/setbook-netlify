@@ -7,6 +7,7 @@ import TokenContext from "./contexts/TokenContext"
 import { useEffect, useState } from "react"
 import Home from "./views/Home"
 import getCookie from "./helpers/get-cookie"
+import Settings from "./views/Settings"
 
 export default function App() {
 	var tokenState = useState(null)
@@ -28,6 +29,7 @@ export default function App() {
 							return (<>
 								<Home path="/home" />
 								<RunSet path="/runset/:exercise" />
+								<Settings path="/settings" />
 							</>)
 						}
 					})()}
