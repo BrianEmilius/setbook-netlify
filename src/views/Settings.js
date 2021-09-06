@@ -7,20 +7,19 @@ export default function Settings() {
 	var [checked, setChecked] = useState(false)
 	var [wakeLock, setWakeLock] = useState({})
 
+	
 	useEffect(function() {
 		(async function() {
 			try {
-				if (!wakeLock.released)
+				if (checked && !wakeLock.released)
 					setWakeLock(await navigator.wakeLock.request("screen"))
-				else {
+				else 
 					wakeLock.release()
-					wakeLock({})
-				}
 			} catch (error) {
 				console.error(error.name, error.message)
 			}
 		}())
-	}, [checked])
+	}, [checked, wakeLock])
 
 	function WakeLock() {
 		if (!("wakeLock" in navigator)) return
