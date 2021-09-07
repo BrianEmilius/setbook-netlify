@@ -55,6 +55,11 @@ export default function Home({exercise}) {
 	}
 
 	useEffect(function() {
+		if ("wakeLock" in navigator) {
+			navigator.wakeLock.request("screen")
+				.then(() => console.log("wakelock active"))
+				.catch(error => console.error(error))
+		}
 		axios.get(`/.netlify/functions/get-exercise?id=${exercise}`,
 		{
 			headers: {

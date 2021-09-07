@@ -1,5 +1,5 @@
 import "./App.css"
-import { Router } from "@reach/router"
+import { navigate, Router } from "@reach/router"
 import RunSet from "./views/RunSet"
 import CreateUser from "./views/CreateUser"
 import LogIn from "./views/LogIn"
@@ -18,6 +18,7 @@ export default function App() {
 
 		var setToken = tokenState[1];
 		setToken(cookie)
+		navigate("/home")
 	}, [tokenState])
 
 	return (
