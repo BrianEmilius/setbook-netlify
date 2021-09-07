@@ -1,6 +1,6 @@
-import { Button, Container, FormGroup, Typography, TextField, Card, Fab, Backdrop } from "@material-ui/core"
-import { Add } from "@material-ui/icons"
-import { Link } from "@reach/router"
+import { Button, Container, FormGroup, Typography, TextField, Card, Fab, Backdrop, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
+import { Add, ExpandMore, Send } from "@material-ui/icons"
+import { navigate } from "@reach/router"
 import axios from "axios"
 import { useState } from "react"
 import { useContext, useEffect } from "react"
@@ -43,22 +43,30 @@ export default function Home() {
 			<ApplicationBar />
 			<Container>
 				{exercises.map(exercise => (
-					<Card key={exercise._id} style={{ padding: ".5em 1em", marginBottom: ".5em" }}>
-						<Typography variant="body1">
-							<Link to={`/runset/${exercise._id}`}>{exercise.title}</Link>
-						</Typography>
-					</Card>
+					<Accordion key={exercise._id}>
+						<AccordionSummary
+							expandIcon={<ExpandMore />}
+						>
+							<Typography variant="body1">{exercise.title}</Typography>
+						</AccordionSummary>
+						<AccordionDetails style={{display: "flex", justifyContent: "space-between"}}>
+							<Typography variant="body2">View history</Typography>
+							<Button color="primary" variant="contained" endIcon={<Send />} onClick={() => navigate(`/runset/${exercise._id}`)}>
+								Run Set
+							</Button>
+						</AccordionDetails>
+					</Accordion>
 				))}
 				<Fab color="primary" style={{ position: "fixed", right: "1em", bottom: "1em" }} onClick={() => setOpen(true)}>
 					<Add />
 				</Fab>
 				<Backdrop open={open} style={{ zIndex: "5000" }}>
-					<Card style={{padding: "1em"}}>
+					<Card style={{ padding: "1em" }}>
 						<form onSubmit={handleSubmit}>
-							<FormGroup style={{marginBottom: "1em"}}>
+							<FormGroup style={{ marginBottom: "1em" }}>
 								<TextField type="text" name="exercise" label="Create a new exercise" />
 							</FormGroup>
-							<Button type="button" variant="contained" color="default" onClick={()=> setOpen(false)}>Cancel</Button>
+							<Button type="button" variant="contained" color="default" onClick={() => setOpen(false)}>Cancel</Button>
 							<Button type="submit" variant="contained" color="primary">Create</Button>
 						</form>
 					</Card>
