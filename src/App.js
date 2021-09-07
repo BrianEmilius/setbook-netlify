@@ -1,5 +1,5 @@
 import "./App.css"
-import { Router } from "@reach/router"
+import { navigate, Router } from "@reach/router"
 import RunSet from "./views/RunSet"
 import CreateUser from "./views/CreateUser"
 import LogIn from "./views/LogIn"
@@ -7,6 +7,7 @@ import TokenContext from "./contexts/TokenContext"
 import { useEffect, useState } from "react"
 import Home from "./views/Home"
 import getCookie from "./helpers/get-cookie"
+import Settings from "./views/Settings"
 
 export default function App() {
 	var tokenState = useState(null)
@@ -17,6 +18,7 @@ export default function App() {
 
 		var setToken = tokenState[1];
 		setToken(cookie)
+		navigate("/home")
 	}, [tokenState])
 
 	return (
@@ -28,6 +30,7 @@ export default function App() {
 							return (<>
 								<Home path="/home" />
 								<RunSet path="/runset/:exercise" />
+								<Settings path="/settings" />
 							</>)
 						}
 					})()}
