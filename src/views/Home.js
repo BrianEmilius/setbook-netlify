@@ -1,16 +1,18 @@
-import { Button, Container, FormGroup, Typography, TextField, Card, Fab, Backdrop, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core"
-import { Add, ExpandMore, Send } from "@material-ui/icons"
-import { navigate } from "@reach/router"
+import { Button, Container, FormGroup, TextField, Card, Fab, Backdrop } from "@material-ui/core"
+import { Add } from "@material-ui/icons"
 import axios from "axios"
 import { useState } from "react"
 import { useContext, useEffect } from "react"
+import AccordionElement from "../components/AccordionElement"
 import ApplicationBar from "../components/AppBar"
 import TokenContext from "../contexts/TokenContext"
+import Spinner from "../components/Spinner"
 
 export default function Home() {
 	var [token] = useContext(TokenContext)
 	var [exercises, setExercises] = useState([])
 	var [open, setOpen] = useState(false)
+	var [isLoading, setIsLoading] = useState(true)
 
 	async function handleSubmit(e) {
 		e.preventDefault()
@@ -35,28 +37,17 @@ export default function Home() {
 				authorization: token
 			}
 		})
-			.then(response => setExercises(response.data))
+			.then(response => {
+				setExercises(response.data)
+				setIsLoading(false)
+			})
 	}, [token])
 
 	return (
 		<>
 			<ApplicationBar />
 			<Container>
-				{exercises.map(exercise => (
-					<Accordion key={exercise._id}>
-						<AccordionSummary
-							expandIcon={<ExpandMore />}
-						>
-							<Typography variant="body1">{exercise.title}</Typography>
-						</AccordionSummary>
-						<AccordionDetails style={{display: "flex", justifyContent: "space-between"}}>
-							<Typography variant="body2">View history</Typography>
-							<Button color="primary" variant="contained" endIcon={<Send />} onClick={() => navigate(`/runset/${exercise._id}`)}>
-								Run Set
-							</Button>
-						</AccordionDetails>
-					</Accordion>
-				))}
+				{isLoading ? <Spinner /> : exercises.map(exercise => <AccordionElement key={exercise._id} exercise={exercise} />)}
 				<Fab color="primary" style={{ position: "fixed", right: "1em", bottom: "1em" }} onClick={() => setOpen(true)}>
 					<Add />
 				</Fab>
