@@ -1,0 +1,38 @@
+@import "../variables";
+
+.fab {
+	position: fixed !important;
+	right: 1em;
+	bottom: 1em;
+	background: $noise;
+	color: $mainBackground;
+	background-color: $secondaryBackground;
+}
+
+.backdrop {
+	z-index: 5000 !important;
+
+	&__modal {
+		padding: 1em;
+		background: $noise;
+		color: $mainBackground;
+		background-color: $secondaryBackground;
+	}
+
+	.btnGroup {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.btn--cancel {
+		background: $noise;
+		background-color: $inactive;
+		color: $secondaryBackground;
+	}
+
+	.btn--submit {
+		background: $noise;
+		background-color: $mainBackground;
+		color: $secondaryBackground;
+	}
+}

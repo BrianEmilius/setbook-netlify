@@ -3,11 +3,12 @@ import ProfileIcon from "@material-ui/icons/Person"
 import SettingsIcon from "@material-ui/icons/Settings"
 import HomeIcon from "@material-ui/icons/Home"
 import { navigate } from "@reach/router"
+import "./Menu.scss"
 
 export default function Menu({ open, setOpen }) {
 	return (
 		<Drawer open={open} anchor="right" onClose={() => setOpen(!open)}>
-			<List onClick={() => setOpen(!open)} style={{width: 240}}>
+			<List className="menu" onClick={() => setOpen(!open)} style={{width: 240}}>
 			<ListItem button onClick={() => navigate("/home")}>
 					<ListItemIcon><HomeIcon /></ListItemIcon>
 					<ListItemText>Home</ListItemText>

@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core"
+import { Button, Typography, Container } from "@material-ui/core"
 import { useState, useEffect, useContext } from "react"
 import Record from "../components/Record"
 import Timer from "react-compound-timer"
@@ -6,6 +6,7 @@ import axios from "axios"
 import AppBar from "../components/AppBar"
 import TokenContext from "../contexts/TokenContext"
 import SetTable from "../components/SetTable"
+import "./RunSet.scss"
 
 export default function Home({ exercise }) {
 	var [inputFields, setInputFields] = useState([])
@@ -78,31 +79,33 @@ export default function Home({ exercise }) {
 
 
 	return (
-		<div>
+		<>
 			<AppBar back="/home" />
-			<form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
-				<Typography variant="h6" component="h1">{exerciseObject.title}</Typography>
-				{prevSet.sets ?
-					<SetTable date={prevSet.date} sets={prevSet.sets} />
-					: <Typography>You have not done this exercise before</Typography>}
-				<div style={{ display: "flex", overflowX: "scroll", margin: "1em 0", minHeight: "96px" }}>
-					{inputFields.map((inputField, index) => (
-						<Record inputField={inputField} index={index} key={index} inputFields={inputFields} setInputFields={setInputFields} />
-					))}
-				</div>
-				<Timer timeToUpdate="10" onReset={resetTimer}>
-					{({ reset }) => (
-						<>
-							{!running && <Button variant="contained" color="primary" size="large" style={{ padding: "2em 0" }} type="button" onClick={reset}>Start</Button>}
-							{running && <Button type="button" variant="contained" size="large" color="secondary" style={{ padding: "2em 0" }} onClick={reset}>Stop</Button>}
-							<div style={{ textAlign: "center", fontSize: "300%" }}>
-								<Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />:<Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
-							</div>
-						</>
-					)}
-				</Timer>
-				<Button type="submit">Save</Button>
-			</form>
-		</div>
+			<Container className="viewContainer">
+				<form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
+					<Typography className="heading" variant="h5" component="h1">{exerciseObject.title}</Typography>
+					{prevSet.sets ?
+						<SetTable date={prevSet.date} sets={prevSet.sets} />
+						: <Typography>You have not done this exercise before</Typography>}
+					<div style={{ display: "flex", overflowX: "scroll", margin: "1em 0", minHeight: "96px" }}>
+						{inputFields.map((inputField, index) => (
+							<Record inputField={inputField} index={index} key={index} inputFields={inputFields} setInputFields={setInputFields} />
+						))}
+					</div>
+					<Timer timeToUpdate="10" onReset={resetTimer}>
+						{({ reset }) => (
+							<>
+								{!running && <Button variant="contained" className="masterButton masterButton--start" size="large" type="button" onClick={reset}>Start</Button>}
+								{running && <Button type="button" className="masterButton masterButton--end" variant="contained" size="large" onClick={reset}>Stop</Button>}
+								<div className="timer">
+									<Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />:<Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
+								</div>
+							</>
+						)}
+					</Timer>
+					<Button type="submit">Save</Button>
+				</form>
+			</Container>
+		</>
 	)
 }

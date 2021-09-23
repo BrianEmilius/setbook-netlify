@@ -4,17 +4,18 @@ import ArrowBack from "@material-ui/icons/ArrowBack"
 import { navigate } from "@reach/router"
 import Menu from "./Menu"
 import { useState } from "react"
+import "./AppBar.scss"
 
 export default function ApplicationBar({back}) {
 	var [open, setOpen] = useState(false)
 	return (
-		<AppBar position="fixed">
+		<AppBar position="fixed" className="appbar">
 			<Toolbar style={{display:"grid", gridTemplateColumns: "repeat(2, 1fr)"}}>
-				{back && <IconButton edge="start" color="inherit" onClick={() => navigate(back)} style={{justifySelf: "start"}}>
-					<ArrowBack />
+				{back && <IconButton edge="start" onClick={() => navigate(back)} style={{justifySelf: "start"}}>
+					<ArrowBack className="appbar__iconButton" />
 				</IconButton>}
-				<IconButton onClick={() => setOpen(!open)} edge="end" color="inherit" aria-label="menu" style={{gridColumnStart: "2", justifySelf: "end"}}>
-					<MenuIcon />
+				<IconButton onClick={() => setOpen(!open)} edge="end" aria-label="menu" style={{gridColumnStart: "2", justifySelf: "end"}}>
+					<MenuIcon className="appbar__iconButton" />
 				</IconButton>
 			</Toolbar>
 			<Menu open={open} setOpen={setOpen} />

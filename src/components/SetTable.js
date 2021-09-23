@@ -1,22 +1,23 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow } from "@material-ui/core";
+import "./SetTable.scss"
 
 export default function SetTable({ date, sets }) {
 	return (
 		<TableContainer>
-			<Table style={{ display: "flex" }}>
+			<Table className="table">
 				<thead>
-					<TableRow style={{ display: "flex", flexDirection: "column" }}>
-						<TableCell>{new Date(date).toLocaleString("default", { day: "numeric", month: "short" })}</TableCell>
-						<TableCell>Reps</TableCell>
-						<TableCell>Weight</TableCell>
+					<TableRow className="table__row">
+						<TableCell className="table__cell">{new Date(date).toLocaleString("default", { day: "numeric", month: "short" })}</TableCell>
+						<TableCell className="table__cell">Reps</TableCell>
+						<TableCell className="table__cell">Weight</TableCell>
 					</TableRow>
 				</thead>
 				<TableBody style={{ display: "flex" }}>
 					{sets?.map((set, i) => (
-						<TableRow key={i} style={{ display: "flex", flexDirection: "column" }}>
-							<TableCell>#{i + 1}</TableCell>
-							<TableCell>{set.reps}</TableCell>
-							<TableCell>{set.weight}</TableCell>
+						<TableRow key={i} className="table__row">
+							<TableCell className="table__cell">#{i + 1}</TableCell>
+							<TableCell className="table__cell">{set.reps}</TableCell>
+							<TableCell className="table__cell">{set.weight}</TableCell>
 						</TableRow>
 					))}
 				</TableBody>

@@ -1,4 +1,4 @@
-import "./App.css"
+import "./App.scss"
 import { navigate, Router } from "@reach/router"
 import RunSet from "./views/RunSet"
 import CreateUser from "./views/CreateUser"

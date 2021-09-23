@@ -1,0 +1,18 @@
+@import "../variables";
+
+.label {
+	display: flex;
+	flex-direction: column;
+	color: $secondaryBackground;
+}
+
+.inputField {
+	width: 4em;
+	color: $secondaryBackground;
+	background: none;
+	border: none;
+	border-bottom: 1px solid $secondaryBackground;
+	font-size: inherit;
+	font-family: inherit;
+	line-height: 2em;
+}
