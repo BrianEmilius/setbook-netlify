@@ -1,10 +1,10 @@
 import { HourglassEmpty } from "@material-ui/icons";
-import "./Spinner.css"
+import "./Spinner.scss"
 
 export default function Spinner() {
 	return (
-		<p style={{width: "100%", textAlign: "center", lineHeight: "40em"}}>
-			<HourglassEmpty className="spinner" />
+		<p className="spinner">
+			<HourglassEmpty className="spinner__icon" />
 		</p>
 	)
 }

@@ -1,0 +1,14 @@
+@import "../variables";
+
+.table {
+	display: flex !important;
+
+	&__row {
+		display: flex !important;
+		flex-direction: column;
+	}
+
+	&__cell {
+		color: $secondaryBackground;
+	}
+}

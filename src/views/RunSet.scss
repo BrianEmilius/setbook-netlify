@@ -1,0 +1,30 @@
+@import "../variables";
+
+.timer {
+	padding: 1em 0;
+	text-align: center;
+	font-size: 400%;
+	font-weight: 700;
+	background-color: $mainBackground;
+	color: transparent;
+	text-shadow: 0 2px 3px rgba(129, 129, 129, 0.1);
+	-webkit-background-clip: text;
+			-moz-background-clip: text;
+					background-clip: text;
+}
+
+.heading {
+	color: $secondaryBackground;
+}
+
+.masterButton {
+	padding: 2em 0 !important;
+	background: $noise;
+	&--start {
+		background-color: $secondaryBackground;
+	}
+	&--end {
+		color: $secondaryBackground;
+		background-color: $inactive;
+	}
+}

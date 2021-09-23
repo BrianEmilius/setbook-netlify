@@ -1,4 +1,4 @@
-import { TextField } from "@material-ui/core"
+import "./Record.scss"
 
 export default function Record({inputField, index, inputFields, setInputFields}) {
   function updateInput(e, index) {
@@ -9,38 +9,34 @@ export default function Record({inputField, index, inputFields, setInputFields})
 
   return (
     <div style={{display:"flex", flexDirection:"column", margin:"0 .6em"}}>
-      <TextField
-        name="reps"
-        label="reps"
-        type="number"
-        value={inputField.reps}
-        style={{width:"4em"}}
-        onChange={e => updateInput(e, index)}
-        InputProps={{
-          inputProps: {
-            min: -100,
-            max: 700,
-            step: 0.1
-          }
-        }}
-        required
-      />
-      <TextField
-        name="weight"
-        label="weight"
-        type="number"
-        value={inputField.weight}
-        style={{width:"4em"}}
-        onChange={e => updateInput(e, index)}
-        InputProps={{
-          inputProps: {
-            min: -100,
-            max: 700,
-            step: 0.1
-          }
-        }}
-        required
-      />
+      <label className="label">
+        reps
+        <input
+          name="reps"
+          type="number"
+          value={inputField.reps}
+          className="inputField"
+          onChange={e => updateInput(e, index)}
+          min="-200"
+          max="1000"
+          step="0.1"
+          required
+        />
+      </label>
+      <label className="label">
+        weight
+        <input
+          name="weight"
+          type="number"
+          value={inputField.weight}
+          className="inputField"
+          onChange={e => updateInput(e, index)}
+          min="-200"
+          max="1000"
+          step="0.1"
+          required
+        />
+      </label>
     </div>
   )
 }

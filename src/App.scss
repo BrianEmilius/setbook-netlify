@@ -1,0 +1,11 @@
+@import "./variables";
+
+.App {
+	background: $noise;
+	background-color: $mainBackground;
+	min-height: 100vh;
+}
+
+.viewContainer {
+	padding-top: 5em;
+}

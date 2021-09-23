@@ -7,6 +7,7 @@ import AccordionElement from "../components/AccordionElement"
 import ApplicationBar from "../components/AppBar"
 import TokenContext from "../contexts/TokenContext"
 import Spinner from "../components/Spinner"
+import "./Home.scss"
 
 export default function Home() {
 	var [token] = useContext(TokenContext)
@@ -46,19 +47,21 @@ export default function Home() {
 	return (
 		<>
 			<ApplicationBar />
-			<Container>
+			<Container className="viewContainer">
 				{isLoading ? <Spinner /> : exercises.map(exercise => <AccordionElement key={exercise._id} exercise={exercise} />)}
-				<Fab color="primary" style={{ position: "fixed", right: "1em", bottom: "1em" }} onClick={() => setOpen(true)}>
+				<Fab className="fab" onClick={() => setOpen(true)}>
 					<Add />
 				</Fab>
-				<Backdrop open={open} style={{ zIndex: "5000" }}>
-					<Card style={{ padding: "1em" }}>
+				<Backdrop open={open} className="backdrop">
+					<Card className="backdrop__modal">
 						<form onSubmit={handleSubmit}>
 							<FormGroup style={{ marginBottom: "1em" }}>
 								<TextField type="text" name="exercise" label="Create a new exercise" />
 							</FormGroup>
-							<Button type="button" variant="contained" color="default" onClick={() => setOpen(false)}>Cancel</Button>
-							<Button type="submit" variant="contained" color="primary">Create</Button>
+							<div className="btnGroup">
+								<Button  className="btn--cancel" type="button" variant="contained" onClick={() => setOpen(false)}>Cancel</Button>
+								<Button className="btn--submit" type="submit" variant="contained">Create</Button>
+							</div>
 						</form>
 					</Card>
 				</Backdrop>

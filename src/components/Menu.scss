@@ -1,0 +1,8 @@
+@import "../variables";
+
+.menu {
+	background: $noise;
+	background-color: $mainBackground;
+	color: $secondaryBackground;
+	min-height: 100vh;
+}
