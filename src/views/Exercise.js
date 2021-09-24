@@ -11,6 +11,7 @@ export default function Exercise({ id }) {
 	var [token] = useContext(TokenContext)
 	var [isLoading, setIsLoading] = useState(true)
 	var [open, setOpen] = useState(false)
+	var [snackbarMessage, setSnackbarMessage] = useState("")
 
 	function updateField(e) {
 		var temporaryContent = { ...content }
@@ -33,7 +34,12 @@ export default function Exercise({ id }) {
 			}
 		)
 			.then(res => {
-				if (res.status === 204) setOpen(true)
+				if (res.status === 204) {
+					setSnackbarMessage("Exercise updated")
+				} else {
+					setSnackbarMessage("Something went wrong")
+				}
+				setOpen(true)
 			})
 	}
 
@@ -62,7 +68,7 @@ export default function Exercise({ id }) {
 					</form>
 				}
 			</Container>
-			<Snackbar open={open} message="Exercise updated" autoHideDuration={5000} onClose={handleClose} />
+			<Snackbar open={open} message={snackbarMessage} autoHideDuration={5000} onClose={handleClose} />
 		</>
 	)
 }
