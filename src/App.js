@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import Home from "./views/Home"
 import getCookie from "./helpers/get-cookie"
 import Settings from "./views/Settings"
+import Exercise from "./views/Exercise"
 
 export default function App() {
 	var tokenState = useState(null)
@@ -30,6 +31,7 @@ export default function App() {
 							return (<>
 								<Home path="/home" />
 								<RunSet path="/runset/:exercise" />
+								<Exercise path="/exercise/:id" />
 								<Settings path="/settings" />
 							</>)
 						}

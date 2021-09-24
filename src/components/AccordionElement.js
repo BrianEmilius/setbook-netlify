@@ -33,7 +33,7 @@ export default function AccordionElement({exercise}) {
 				{content ? <SetTable date={content.date} sets={content.sets} /> : <Typography variant="body2">You have not done this exercise before</Typography>}
 				<div style={{display: "flex", justifyContent: "space-between"}}>
 					<Button className="accordion__button"><HistoryOutlined /></Button>
-					<Button className="accordion__button"><EditOutlined /></Button>
+					<Button className="accordion__button" onClick={() => navigate(`/exercise/${exercise._id}`)}><EditOutlined /></Button>
 					<Button className="accordion__button--textured" variant="contained" endIcon={<Send />} onClick={() => navigate(`/runset/${exercise._id}`)}>
 						Run Set
 					</Button>
