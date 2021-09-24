@@ -5,26 +5,28 @@
 	text-align: center;
 	font-size: 400%;
 	font-weight: 700;
-	color: $secondaryBackground;
-	/* color: transparent;
-	text-shadow: 0 2px 3px rgba(129, 129, 129, 0.1);
+	color: transparent;
+	text-shadow: 0 0 0 $on;
 	-webkit-background-clip: text;
 			-moz-background-clip: text;
-					background-clip: text; */
+					background-clip: text;
+	&--running {
+		text-shadow: 0 0 0 $off;
+	}
 }
 
-.heading {
+.text {
 	color: $secondaryBackground;
 }
 
 .masterButton {
 	padding: 2em 0 !important;
 	background: $noise;
+	color: $secondaryBackground;
 	&--start {
-		background-color: $secondaryBackground;
+		background-color: $on;
 	}
 	&--end {
-		color: $secondaryBackground;
-		background-color: $inactive;
+		background-color: $off;
 	}
 }
