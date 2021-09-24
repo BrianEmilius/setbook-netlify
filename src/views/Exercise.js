@@ -3,18 +3,23 @@ import ApplicationBar from "../components/AppBar"
 import { useContext, useEffect, useState } from "react"
 import TokenContext from "../contexts/TokenContext"
 import axios from "axios"
-import { Button, Container } from "@material-ui/core"
+import { Button, Container, Snackbar } from "@material-ui/core"
 import Spinner from "../components/Spinner"
 
 export default function Exercise({ id }) {
 	var [content, setContent] = useState({})
 	var [token] = useContext(TokenContext)
 	var [isLoading, setIsLoading] = useState(true)
+	var [open, setOpen] = useState(false)
 
 	function updateField(e) {
 		var temporaryContent = { ...content }
 		temporaryContent[e.target.name] = e.target.value
 		setContent(temporaryContent)
+	}
+
+	function handleClose(e) {
+		setOpen(false)
 	}
 
 	function handleSubmit(e) {
@@ -28,7 +33,7 @@ export default function Exercise({ id }) {
 			}
 		)
 			.then(res => {
-				if (res.status === 204) alert("whoop")
+				if (res.status === 204) setOpen(true)
 			})
 	}
 
@@ -57,6 +62,7 @@ export default function Exercise({ id }) {
 					</form>
 				}
 			</Container>
+			<Snackbar open={open} message="Exercise updated" autoHideDuration={5000} onClose={handleClose} />
 		</>
 	)
 }
