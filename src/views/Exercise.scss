@@ -1,0 +1,18 @@
+@import "../variables";
+
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	color: $secondaryBackground;
+	font-size: 120%;
+	margin-bottom: 1em;
+	input {
+		line-height: 2em;
+		font-family: inherit;
+		font-size: inherit;
+		background: $noise;
+		background-color: $secondaryBackground;
+		color: $mainBackground;
+		border: none;
+	}
+}
