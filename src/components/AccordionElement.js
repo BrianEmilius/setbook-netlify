@@ -35,7 +35,7 @@ export default function AccordionElement({exercise}) {
 					<Button className="accordion__button"><HistoryOutlined /></Button>
 					<Button className="accordion__button" onClick={() => navigate(`/exercise/${exercise._id}`)}><EditOutlined /></Button>
 					<Button className="accordion__button--textured" variant="contained" endIcon={<Send />} onClick={() => navigate(`/runset/${exercise._id}`)}>
-						Run Set
+						Do it!
 					</Button>
 				</div>
 			</AccordionDetails>

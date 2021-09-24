@@ -83,10 +83,10 @@ export default function Home({ exercise }) {
 			<AppBar back="/home" />
 			<Container className="viewContainer">
 				<form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
-					<Typography className="heading" variant="h5" component="h1">{exerciseObject.title}</Typography>
+					<Typography className="text" variant="h5" component="h1">{exerciseObject.title}</Typography>
 					{prevSet.sets ?
 						<SetTable date={prevSet.date} sets={prevSet.sets} />
-						: <Typography>You have not done this exercise before</Typography>}
+						: <Typography className="text">You have not done this exercise before</Typography>}
 					<div style={{ display: "flex", overflowX: "scroll", margin: "1em 0", minHeight: "96px" }}>
 						{inputFields.map((inputField, index) => (
 							<Record inputField={inputField} index={index} key={index} inputFields={inputFields} setInputFields={setInputFields} />
@@ -97,7 +97,7 @@ export default function Home({ exercise }) {
 							<>
 								{!running && <Button variant="contained" className="masterButton masterButton--start" size="large" type="button" onClick={reset}>Start</Button>}
 								{running && <Button type="button" className="masterButton masterButton--end" variant="contained" size="large" onClick={reset}>Stop</Button>}
-								<div className="timer">
+								<div className={"timer" + (!running ? " timer--running" : "")}>
 									<Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />:<Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} />
 								</div>
 							</>

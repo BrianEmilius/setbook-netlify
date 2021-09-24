@@ -5,6 +5,7 @@ import TokenContext from "../contexts/TokenContext"
 import axios from "axios"
 import { Button, Container, Snackbar } from "@material-ui/core"
 import Spinner from "../components/Spinner"
+import { SaveAlt } from "@material-ui/icons"
 
 export default function Exercise({ id }) {
 	var [content, setContent] = useState({})
@@ -64,7 +65,7 @@ export default function Exercise({ id }) {
 							Title
 							<input type="text" name="title" value={content.title} onChange={updateField} />
 						</label>
-						<Button variant="contained" type="submit">Save</Button>
+						<Button className="btn" variant="contained" endIcon={<SaveAlt />} type="submit">Save</Button>
 					</form>
 				}
 			</Container>
