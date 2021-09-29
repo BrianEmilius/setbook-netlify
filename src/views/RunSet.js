@@ -1,6 +1,6 @@
 import { Button, Typography, Container, Snackbar } from "@material-ui/core"
 import { SaveAlt } from "@material-ui/icons"
-import { useState, useEffect, useContext, useRef } from "react"
+import { useState, useEffect, useContext } from "react"
 import Record from "../components/Record"
 import Timer from "react-compound-timer"
 import axios from "axios"
