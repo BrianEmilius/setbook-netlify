@@ -1,5 +1,12 @@
 @import "../variables";
 
+.recordContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 0 .6em;
+	color: $secondaryBackground;
+}
+
 .label {
 	display: flex;
 	flex-direction: column;
