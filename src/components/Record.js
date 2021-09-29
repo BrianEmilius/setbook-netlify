@@ -1,6 +1,8 @@
+import { IconButton } from "@material-ui/core"
+import { HighlightOff } from "@material-ui/icons"
 import "./Record.scss"
 
-export default function Record({inputField, index, inputFields, setInputFields}) {
+export default function Record({inputField, index, inputFields, setInputFields, removeSet}) {
   function updateInput(e, index) {
     var values = [...inputFields]
     values[index][e.target.name] = e.target.value
@@ -8,7 +10,7 @@ export default function Record({inputField, index, inputFields, setInputFields})
   }
 
   return (
-    <div style={{display:"flex", flexDirection:"column", margin:"0 .6em"}}>
+    <div className="recordContainer">
       <label className="label">
         reps
         <input
@@ -37,6 +39,7 @@ export default function Record({inputField, index, inputFields, setInputFields})
           required
         />
       </label>
+      <IconButton onClick={() => removeSet(index)} color="inherit"><HighlightOff /></IconButton>
     </div>
   )
 }

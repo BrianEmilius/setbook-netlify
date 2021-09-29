@@ -1,7 +1,7 @@
 @import "../variables";
 
 .timer {
-	padding: 1em 0;
+	line-height: 150px;
 	text-align: center;
 	font-size: 400%;
 	font-weight: 700;
@@ -12,6 +12,13 @@
 					background-clip: text;
 	&--running {
 		text-shadow: 0 0 0 $off;
+	}
+}
+
+.disabled {
+	pointer-events: none;
+	* {
+		pointer-events: inherit;
 	}
 }
 
