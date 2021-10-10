@@ -9,11 +9,12 @@ import Home from "./views/Home"
 import getCookie from "./helpers/get-cookie"
 import Settings from "./views/Settings"
 import Exercise from "./views/Exercise"
+import History from "./views/History"
 
 export default function App() {
 	var tokenState = useState(null)
 
-	useEffect(function() {
+	useEffect(function () {
 		var cookie = getCookie("sb-token")
 		if (cookie === "") return
 
@@ -33,6 +34,7 @@ export default function App() {
 								<RunSet path="/runset/:exercise" />
 								<Exercise path="/exercise/:id" />
 								<Settings path="/settings" />
+								<History path="/history/:exerciseId" />
 							</>)
 						}
 					})()}
