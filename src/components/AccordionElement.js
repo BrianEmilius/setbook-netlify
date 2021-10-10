@@ -39,7 +39,7 @@ export default function AccordionElement({exercise}) {
 			{isLoading ? <LinearProgress /> : <AccordionDetails style={{ display: "grid", gridColumn: "1", gridRow: "repeat(2, auto)", gap: "1em" }}>
 				{content?.date ? <SetTable date={content.date} sets={content.sets} /> : <Typography variant="body2">You have not done this exercise before</Typography>}
 				<div style={{display: "flex", justifyContent: "space-between"}}>
-					<IconButton className="accordion__button"><HistoryOutlined /></IconButton>
+					<IconButton className="accordion__button" onClick={() => navigate(`/history/${exercise._id}`)}><HistoryOutlined /></IconButton>
 					<IconButton className="accordion__button" onClick={() => navigate(`/exercise/${exercise._id}`)}><EditOutlined /></IconButton>
 					<Button className="accordion__button--textured" variant="contained" endIcon={<Send />} onClick={() => navigate(`/runset/${exercise._id}`)}>
 						Do it!

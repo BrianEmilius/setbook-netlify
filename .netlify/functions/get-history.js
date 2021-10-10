@@ -1,10 +1,21 @@
 var connect = require("../mongodb")
 var validToken = require("../validateToken")
 var parseToken = require("../parseToken")
-const { ObjectId } = require("mongodb")
+var { ObjectId } = require("mongodb")
+var getAverageRest = require("../average-rest")
 
-async function getExercises(db, user) {
-	var result = await db.collection("exercises").find({ user: ObjectId(user) }).sort({ title: 1 }).toArray()
+async function getExercises(db, user, id) {
+	var result = await db.collection("sets").find({
+		user: ObjectId(user),
+		exercise: ObjectId(id)
+	}).sort({
+		date: -1
+	}).toArray()
+
+	result = result.map(element => {
+		element.averageRest = getAverageRest(element.sets)
+		return element
+	})
 
 	return {
 		statusCode: 200,
@@ -38,5 +49,6 @@ module.exports.handler = async function(event, context) {
 
 	var db = await connect()
 	var userId = parseToken(event.headers.authorization).data.id
-	return getExercises(db, userId)
+	var id = event.queryStringParameters.id
+	return getExercises(db, userId, id)
 }
