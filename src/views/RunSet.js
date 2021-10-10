@@ -112,10 +112,10 @@ export default function Home({ exercise }) {
 	function resetTimer() {
 		setDisabled(true)
 
-		setTimeout(function() {
+		setTimeout(function () {
 			setDisabled(false)
 		}, 3000)
-		
+
 		if (!running) {
 			addSet()
 			return
@@ -156,26 +156,33 @@ export default function Home({ exercise }) {
 			<Container className="viewContainer">
 				{isLoading ? <Spinner /> : <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
 					<Typography className="text" variant="h5" component="h1">{exerciseObject.title}</Typography>
-					
+
 					{prevSet.sets ?
 						<SetTable date={prevSet.date} sets={prevSet.sets} />
 						: <Typography className="text">You have not done this exercise before</Typography>}
 
 					<div style={{ display: "flex", overflowX: "scroll", margin: "1em 0", minHeight: "162px" }}>
 						{inputFields.map((inputField, index) => (
-							<Record inputField={inputField} index={index} key={index} inputFields={inputFields} setInputFields={setInputFields} removeSet={removeSet} />
+							<Record
+								key={index}
+								inputField={inputField}
+								index={index}
+								inputFields={inputFields}
+								setInputFields={setInputFields}
+								removeSet={removeSet}
+							/>
 						))}
 					</div>
 
 					<Timer timeToUpdate="10" onReset={resetTimer}>
 						{({ reset }) => (
 							<>
-							<Button
-								variant="contained"
-								size="large"
-								type="button"
-								onClick={reset}
-								className={"masterButton masterButton--" + (running ? "end" : "start") + (disabled ? " disabled" : "")}>
+								<Button
+									variant="contained"
+									size="large"
+									type="button"
+									onClick={reset}
+									className={"masterButton masterButton--" + (running ? "end" : "start") + (disabled ? " disabled" : "")}>
 									{running ? "Stop" : "Start"}
 								</Button>
 								<div className={"timer" + (!running ? " timer--running" : "")}>
