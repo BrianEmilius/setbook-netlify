@@ -30,10 +30,10 @@ export default function History({ exerciseId }) {
 				<Typography variant="h5" component="h1" className="text">
 					History
 					{content.map(element => (
-						<>
+						<div key={element._id}>
 							<SetTable date={element.date} sets={element.sets} />
 							<Typography className="text" style={{marginBottom: "1em"}}>Average rest time: {element.averageRest}</Typography>
-						</>
+						</div>
 					))}
 				</Typography>
 			</Container>}

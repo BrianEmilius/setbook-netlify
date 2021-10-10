@@ -1,8 +1,28 @@
 import { IconButton } from "@material-ui/core"
 import { HighlightOff } from "@material-ui/icons"
+import { useState, useEffect } from "react"
 import "./Record.scss"
 
 export default function Record({inputField, index, inputFields, setInputFields, removeSet}) {
+  var [confirm, setConfirm] = useState(false)
+  var time
+
+  useEffect(function() {
+    return () => {
+      if (time) clearTimeout(time)
+    }
+  }, [time])
+
+  function confirmRemove(index) {
+    if (!confirm) {
+      setConfirm(true)
+      time = setTimeout(() => setConfirm(false), 3000)
+      return
+    }
+
+    removeSet(index)
+  }
+
   function updateInput(e, index) {
     var values = [...inputFields]
     values[index][e.target.name] = e.target.value
@@ -39,7 +59,7 @@ export default function Record({inputField, index, inputFields, setInputFields, 
           required
         />
       </label>
-      <IconButton onClick={() => removeSet(index)} color="inherit"><HighlightOff /></IconButton>
+      <IconButton onClick={() => confirmRemove(index)} color={confirm ? "secondary" : "inherit"}><HighlightOff /></IconButton>
     </div>
   )
 }
