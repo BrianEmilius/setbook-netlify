@@ -14,6 +14,7 @@ export default function Home() {
 	var [exercises, setExercises] = useState([])
 	var [open, setOpen] = useState(false)
 	var [isLoading, setIsLoading] = useState(true)
+	var [results, setResults] = useState([])
 
 	async function handleSubmit(e) {
 		e.preventDefault()
@@ -40,15 +41,24 @@ export default function Home() {
 		})
 			.then(response => {
 				setExercises(response.data)
+				setResults(response.data)
 				setIsLoading(false)
 			})
 	}, [token])
 
+	function filter(e) {
+		var keyword = e.target.value.toLowerCase()
+
+		var temp = exercises.filter(exercise => exercise.title.toLowerCase().includes(keyword))
+		setResults(temp)
+	}
+
 	return (
 		<>
 			<ApplicationBar />
-			<Container className="viewContainer">
-				{isLoading ? <Spinner /> : exercises.map(exercise => <AccordionElement key={exercise._id} exercise={exercise} />)}
+			{isLoading ? <Spinner /> : <Container className="viewContainer">
+				<TextField variant="filled" label="Search" onChange={filter} autoComplete="off" className="searchField" />
+				{results.map(exercise => <AccordionElement key={exercise._id} exercise={exercise} />)}
 				<Fab className="fab" onClick={() => setOpen(true)}>
 					<Add />
 				</Fab>
@@ -59,13 +69,13 @@ export default function Home() {
 								<TextField type="text" name="exercise" label="Create a new exercise" />
 							</FormGroup>
 							<div className="btnGroup">
-								<Button  className="btn--cancel" type="button" variant="contained" onClick={() => setOpen(false)}>Cancel</Button>
+								<Button className="btn--cancel" type="button" variant="contained" onClick={() => setOpen(false)}>Cancel</Button>
 								<Button className="btn--submit" type="submit" variant="contained">Create</Button>
 							</div>
 						</form>
 					</Card>
 				</Backdrop>
-			</Container>
+			</Container>}
 		</>
 	)
 }
