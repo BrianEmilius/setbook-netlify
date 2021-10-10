@@ -23,6 +23,7 @@ export default function Home({ exercise }) {
 	var [isSaved, setIsSaved] = useState(false)
 	var [setId, setSetId] = useState(null)
 	var [disabled, setDisabled] = useState(false)
+	var [wakeLock, setWakeLock] = useState(null)
 
 	function saveSet(data) {
 		axios.post("/.netlify/functions/save-set", JSON.stringify(data), {
@@ -125,11 +126,19 @@ export default function Home({ exercise }) {
 		return
 	}
 
+	async function requestWakeLock() {
+		try {
+			var temp = await navigator.wakeLock.request("screen")
+			setWakeLock(() => temp)
+			console.log("wakeLock active")
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
 	useEffect(function () {
 		if ("wakeLock" in navigator) {
-			navigator.wakeLock.request("screen")
-				.then(() => console.log("wakelock active"))
-				.catch(error => console.error(error))
+			requestWakeLock()
 		}
 		axios.get(`/.netlify/functions/get-exercise?id=${exercise}`,
 			{
@@ -149,6 +158,17 @@ export default function Home({ exercise }) {
 				setIsLoading(false)
 			})
 	}, [exercise, token])
+
+	useEffect(function() {
+		return () => {
+			if (wakeLock !== null) {
+				wakeLock.release()
+					.then(() => {
+						console.log("wakeLock inactive")
+					})
+			}
+		}
+	}, [wakeLock])
 
 	return (
 		<>
