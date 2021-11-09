@@ -30,7 +30,7 @@ export default function AccordionElement({exercise}) {
 	}
 
 	return (
-		<Accordion key={exercise._id} onChange={(e,expanded) => toggle(expanded)} className="accordion" >
+		<Accordion onChange={(e,expanded) => toggle(expanded)} className="accordion" >
 			<AccordionSummary
 				expandIcon={<ExpandMore style={{color: "white"}} />}
 			>
