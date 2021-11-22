@@ -1,6 +1,5 @@
 import "./App.scss"
-import { navigate } from "@reach/router"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import TokenContext from "./contexts/TokenContext"
 import { useEffect, useState } from "react"
 import getCookie from "./helpers/get-cookie"
@@ -14,6 +13,7 @@ import History from "./views/History"
 
 export default function App() {
 	var tokenState = useState(null)
+	var navigate = useNavigate()
 
 	useEffect(function () {
 		var cookie = getCookie("sb-token")
