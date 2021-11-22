@@ -22,7 +22,7 @@ export default function App() {
 		var setToken = tokenState[1];
 		setToken(cookie)
 		navigate("/")
-	}, [tokenState])
+	}, [tokenState, navigate])
 
 	return (
 		<div className="App">
