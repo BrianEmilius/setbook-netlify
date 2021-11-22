@@ -25,7 +25,7 @@ export default function LogIn() {
 			document.cookie = `sb-token=${response.data}; expires=${date.toUTCString()}; path="/"`
 		}
 
-		navigate("/home")
+		navigate("/")
 	}
 
 	return (
