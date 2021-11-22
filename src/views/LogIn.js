@@ -1,5 +1,5 @@
 import { Button, Container, FormGroup, TextField, Checkbox } from "@material-ui/core"
-import { navigate } from "@reach/router"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useContext } from "react"
 import TokenContext from "../contexts/TokenContext"
@@ -7,6 +7,7 @@ import BgImg from "../splash-image-lg.jpg"
 
 export default function LogIn() {
 	var setToken = useContext(TokenContext)[1]
+	var navigate = useNavigate()
 
 	async function handleSubmit(e) {
 		e.preventDefault()

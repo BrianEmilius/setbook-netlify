@@ -5,7 +5,7 @@ import ApplicationBar from "../components/AppBar"
 export default function Settings() {
 	return (
 		<>
-			<ApplicationBar back="/home" />
+			<ApplicationBar back="/" />
 			<Container>
 				settings
 			</Container>

@@ -1,13 +1,15 @@
 import { AppBar, Toolbar, IconButton } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import ArrowBack from "@material-ui/icons/ArrowBack"
-import { navigate } from "@reach/router"
 import Menu from "./Menu"
 import { useState } from "react"
 import "./AppBar.scss"
+import { useNavigate } from "react-router-dom"
 
 export default function ApplicationBar({back}) {
 	var [open, setOpen] = useState(false)
+	var navigate = useNavigate()
+	
 	return (
 		<AppBar position="fixed" className="appbar">
 			<Toolbar style={{display:"grid", gridTemplateColumns: "repeat(2, 1fr)"}}>

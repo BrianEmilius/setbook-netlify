@@ -1,12 +1,13 @@
 import "./App.scss"
-import { navigate, Router } from "@reach/router"
+import { navigate } from "@reach/router"
+import { Routes, Route } from "react-router-dom"
+import TokenContext from "./contexts/TokenContext"
+import { useEffect, useState } from "react"
+import getCookie from "./helpers/get-cookie"
 import RunSet from "./views/RunSet"
 import CreateUser from "./views/CreateUser"
 import LogIn from "./views/LogIn"
-import TokenContext from "./contexts/TokenContext"
-import { useEffect, useState } from "react"
 import Home from "./views/Home"
-import getCookie from "./helpers/get-cookie"
 import Settings from "./views/Settings"
 import Exercise from "./views/Exercise"
 import History from "./views/History"
@@ -20,27 +21,28 @@ export default function App() {
 
 		var setToken = tokenState[1];
 		setToken(cookie)
-		navigate("/home")
+		navigate("/")
 	}, [tokenState])
 
 	return (
 		<div className="App">
 			<TokenContext.Provider value={tokenState}>
-				<Router>
-					{(function () {
-						if (tokenState[0] !== null) {
-							return (<>
-								<Home path="/home" />
-								<RunSet path="/runset/:exercise" />
-								<Exercise path="/exercise/:id" />
-								<Settings path="/settings" />
-								<History path="/history/:exerciseId" />
-							</>)
-						}
-					})()}
-					<LogIn default path="/login" />
-					<CreateUser path="/create-user" />
-				</Router>
+				<Routes>
+					{ tokenState[0] ? (
+						<>
+							<Route element={<Home/>} path="/" />
+							<Route element={<RunSet/>} path="/runset/:exercise" />
+							<Route element={<Exercise/>} path="/exercise/:id" />
+							<Route element={<Settings/>} path="/settings" />
+							<Route element={<History/>} path="/history/:exerciseId" />
+						</>
+					) : (
+						<>
+							<Route element={<LogIn/>} path="/" />
+							<Route element={<CreateUser/>} path="/create-user" />
+						</>
+					) }
+				</Routes>
 			</TokenContext.Provider>
 		</div>
 	)

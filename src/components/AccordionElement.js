@@ -1,6 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, IconButton, LinearProgress, Typography } from "@material-ui/core"
 import { EditOutlined, ExpandMore, HistoryOutlined, Send } from "@material-ui/icons"
-import { navigate } from "@reach/router"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useContext, useState } from "react"
 import TokenContext from "../contexts/TokenContext"
@@ -12,6 +12,7 @@ export default function AccordionElement({exercise}) {
 	var [token] = useContext(TokenContext)
 	var [done, setDone] = useState(false)
 	var [isLoading, setIsLoading] = useState(true)
+	const navigate = useNavigate()
 
 	function toggle(expanded) {
 		if (!expanded) return

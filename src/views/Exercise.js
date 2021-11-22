@@ -6,13 +6,15 @@ import axios from "axios"
 import { Button, Container, Snackbar } from "@material-ui/core"
 import Spinner from "../components/Spinner"
 import { SaveAlt } from "@material-ui/icons"
+import { useParams } from "react-router-dom"
 
-export default function Exercise({ id }) {
+export default function Exercise() {
 	var [content, setContent] = useState({})
 	var [token] = useContext(TokenContext)
 	var [isLoading, setIsLoading] = useState(true)
 	var [open, setOpen] = useState(false)
 	var [snackbarMessage, setSnackbarMessage] = useState("")
+	var {id} = useParams()
 
 	function updateField(e) {
 		var temporaryContent = { ...content }
@@ -57,7 +59,7 @@ export default function Exercise({ id }) {
 	}, [id, token])
 	return (
 		<>
-			<ApplicationBar back="/home" />
+			<ApplicationBar back="/" />
 			<Container className="viewContainer">
 				{isLoading ? <Spinner /> :
 					<form onSubmit={handleSubmit}>

@@ -1,6 +1,7 @@
 import { Button, Typography, Container, Snackbar } from "@material-ui/core"
 import { SaveAlt } from "@material-ui/icons"
 import { useState, useEffect, useContext } from "react"
+import {useParams} from "react-router-dom"
 import Record from "../components/Record"
 import Timer from "react-compound-timer"
 import axios from "axios"
@@ -10,7 +11,7 @@ import SetTable from "../components/SetTable"
 import Spinner from "../components/Spinner"
 import "./RunSet.scss"
 
-export default function Home({ exercise }) {
+export default function Home() {
 	var [token] = useContext(TokenContext)
 	var [inputFields, setInputFields] = useState([])
 	var [running, setRunning] = useState(false)
@@ -24,6 +25,7 @@ export default function Home({ exercise }) {
 	var [setId, setSetId] = useState(null)
 	var [disabled, setDisabled] = useState(false)
 	var [wakeLock, setWakeLock] = useState(null)
+	var {exercise} = useParams()
 
 	function saveSet(data) {
 		axios.post("/.netlify/functions/save-set", JSON.stringify(data), {
@@ -172,7 +174,7 @@ export default function Home({ exercise }) {
 
 	return (
 		<>
-			<AppBar back="/home" />
+			<AppBar back="/" />
 			<Container className="viewContainer">
 				{isLoading ? <Spinner /> : <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
 					<Typography className="text" variant="h5" component="h1">{exerciseObject.title}</Typography>

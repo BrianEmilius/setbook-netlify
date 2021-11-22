@@ -1,15 +1,17 @@
 import { Container, Typography } from "@material-ui/core"
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import ApplicationBar from "../components/AppBar"
 import TokenContext from "../contexts/TokenContext"
 import Spinner from "../components/Spinner"
 import SetTable from "../components/SetTable"
 
-export default function History({ exerciseId }) {
+export default function History() {
 	var [content, setContent] = useState([])
 	var [token] = useContext(TokenContext)
 	var [isLoading, setIsLoading] = useState(true)
+	var { exerciseId } = useParams()
 
 	useEffect(function () {
 		axios.get(`/.netlify/functions/get-history?id=${exerciseId}`, {
@@ -25,7 +27,7 @@ export default function History({ exerciseId }) {
 
 	return (
 		<>
-			<ApplicationBar back="/home" />
+			<ApplicationBar back="/" />
 			{isLoading ? <Spinner /> : <Container className="viewContainer">
 				<Typography variant="h5" component="h1" className="text">
 					History
