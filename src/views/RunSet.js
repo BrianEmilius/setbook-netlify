@@ -172,7 +172,7 @@ export default function Home({ exercise }) {
 
 	return (
 		<>
-			<AppBar back="/home" />
+			<AppBar back={-1} />
 			<Container className="viewContainer">
 				{isLoading ? <Spinner /> : <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
 					<Typography className="text" variant="h5" component="h1">{exerciseObject.title}</Typography>

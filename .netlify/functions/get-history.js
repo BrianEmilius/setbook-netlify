@@ -5,21 +5,26 @@ var { ObjectId } = require("mongodb")
 var getAverageRest = require("../average-rest")
 
 async function getExercises(db, user, id) {
-	var result = await db.collection("sets").find({
+	var results = await db.collection("sets").find({
 		user: ObjectId(user),
 		exercise: ObjectId(id)
 	}).sort({
 		date: -1
 	}).toArray()
 
-	result = result.map(element => {
+	var exercise = await db.collection("exercises").find({_id: ObjectId(id)}).toArray()
+
+	results = results.map(element => {
 		element.averageRest = getAverageRest(element.sets)
 		return element
 	})
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify(result)
+		body: JSON.stringify({
+			title: exercise[0].title,
+			results
+		})
 	}
 }
 

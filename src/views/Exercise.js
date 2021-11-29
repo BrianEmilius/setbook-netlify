@@ -57,7 +57,7 @@ export default function Exercise({ id }) {
 	}, [id, token])
 	return (
 		<>
-			<ApplicationBar back="/home" />
+			<ApplicationBar back={-1} />
 			<Container className="viewContainer">
 				{isLoading ? <Spinner /> :
 					<form onSubmit={handleSubmit}>

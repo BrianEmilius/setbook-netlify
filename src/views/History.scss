@@ -1,0 +1,14 @@
+@import "../variables";
+
+.card {
+	background: $noise;
+	background-color: #131313 !important;
+	border-radius: 5px;
+	margin-bottom: 1em;
+}
+
+.history-heading {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1em;
+}
