@@ -7,7 +7,7 @@ import { useContext } from "react"
 import TokenContext from "../contexts/TokenContext"
 
 export default function Menu({ open, setOpen }) {
-	var setToken = useContext(TokenContext)[0]
+	var setToken = useContext(TokenContext)[1]
 	function logout() {
 		document.cookie = "sb-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
 		setToken(null)
