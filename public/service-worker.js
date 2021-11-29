@@ -1,4 +1,4 @@
-const CACHE_NAME = "setbook_cache_v1"
+const CACHE_NAME = "setbook_cache_v2"
 var urlsToCache = [
   "/"
 ]

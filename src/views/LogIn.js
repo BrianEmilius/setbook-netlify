@@ -1,5 +1,5 @@
-import { Button, Container, FormGroup, TextField, Checkbox } from "@material-ui/core"
-import { navigate } from "@reach/router"
+import { Button, Container, FormGroup, FormControlLabel, TextField, Checkbox, Typography } from "@material-ui/core"
+import { navigate, Link } from "@reach/router"
 import axios from "axios"
 import { useContext } from "react"
 import TokenContext from "../contexts/TokenContext"
@@ -33,9 +33,15 @@ export default function LogIn() {
 				<FormGroup>
 					<TextField type="email" name="email" label="Email address" variant="filled" style={{backgroundColor: "white"}} required />
 					<TextField type="password" name="password" label="Password" variant="filled" style={{backgroundColor: "white"}} required />
-					<Checkbox label="Keep me logged in" style={{color: "white"}} name="rememberme" />
+					<FormControlLabel
+						control={<Checkbox style={{color: "white"}} name="rememberme" />}
+						label="Keep me logged in"
+						style={{color: "white"}}
+					/>
+					
 				</FormGroup>
-				<Button type="submit" variant="contained" color="primary">Log in</Button>
+				<Button type="submit" variant="contained" color="primary" style={{width: "100%"}}>Log in</Button>
+				<Typography style={{color: "white"}}><Link to="/create-user">Register an account</Link></Typography>
 			</form>
 		</Container>
 	)

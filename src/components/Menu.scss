@@ -5,4 +5,7 @@
 	background-color: $mainBackground;
 	color: $secondaryBackground;
 	min-height: 100vh;
+	&__text {
+		color: $secondaryBackground;
+	}
 }
