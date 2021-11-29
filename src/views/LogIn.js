@@ -28,7 +28,7 @@ export default function LogIn() {
 	}
 
 	return (
-		<Container style={{backgroundImage: `url(${BgImg})`, backgroundSize: "cover", width: "100vw", height: "100vh", display: "grid", alignItems:"center"}}>
+		<Container style={{backgroundImage: `url(${BgImg})`, backgroundSize: "cover", backgroundPositionX: "75%", width: "100vw", height: "100vh", display: "grid", alignItems:"center"}}>
 			<form onSubmit={handleSubmit}>
 				<FormGroup>
 					<TextField type="email" name="email" label="Email address" variant="filled" style={{backgroundColor: "white"}} required />
@@ -41,7 +41,7 @@ export default function LogIn() {
 					
 				</FormGroup>
 				<Button type="submit" variant="contained" color="primary" style={{width: "100%"}}>Log in</Button>
-				<Typography style={{color: "white"}}><Link to="/create-user">Register an account</Link></Typography>
+				<Typography style={{color: "white"}}><Link to="/create-user">Create a free account</Link></Typography>
 			</form>
 		</Container>
 	)

@@ -2,7 +2,7 @@
   "short_name": "SetBook",
   "name": "SetBook",
   "description": "Record and track your progress in the gym",
-  "start_url": ".",
+  "start_url": "/",
   "background_color": "#3a3a3a",
   "theme_color": "#3a3a3a",
   "display": "standalone",
