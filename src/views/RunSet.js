@@ -136,6 +136,24 @@ export default function Home({ exercise }) {
 		}
 	}
 
+	function onVisibilityChange(event) {
+		if (event.target.visibilityState === "visible") {
+			requestWakeLock()
+		} else {
+			if (wakeLock !== null) {
+				wakeLock.release()
+					.then(() => {
+						console.log("wakeLock inactive")
+					})
+			}
+		}
+	}
+
+	useEffect(function () {
+		document.addEventListener("visibilitychange", onVisibilityChange)
+		// eslint-disable-next-line
+	}, [])
+
 	useEffect(function () {
 		if ("wakeLock" in navigator) {
 			requestWakeLock()
@@ -159,7 +177,7 @@ export default function Home({ exercise }) {
 			})
 	}, [exercise, token])
 
-	useEffect(function() {
+	useEffect(function () {
 		return () => {
 			if (wakeLock !== null) {
 				wakeLock.release()
