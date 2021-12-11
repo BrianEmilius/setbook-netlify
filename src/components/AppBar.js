@@ -6,15 +6,16 @@ import Menu from "./Menu"
 import { useState } from "react"
 import "./AppBar.scss"
 
-export default function ApplicationBar({back}) {
+export default function ApplicationBar({back, extraButton}) {
 	var [open, setOpen] = useState(false)
 	return (
 		<AppBar position="fixed" className="appbar">
-			<Toolbar style={{display:"grid", gridTemplateColumns: "repeat(2, 1fr)"}}>
+			<Toolbar style={{display:"grid", gridTemplateColumns: "repeat(7, 1fr)"}}>
 				{back && <IconButton edge="start" onClick={() => navigate(back)} style={{justifySelf: "start"}}>
 					<ArrowBack className="appbar__iconButton" />
 				</IconButton>}
-				<IconButton onClick={() => setOpen(!open)} edge="end" aria-label="menu" style={{gridColumnStart: "2", justifySelf: "end"}}>
+				{extraButton}
+				<IconButton onClick={() => setOpen(!open)} edge="end" aria-label="menu" style={{gridColumnStart: "7", justifySelf: "end"}}>
 					<MenuIcon className="appbar__iconButton" />
 				</IconButton>
 			</Toolbar>
