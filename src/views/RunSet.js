@@ -1,5 +1,4 @@
-import { Button, Typography, Container, Snackbar } from "@material-ui/core"
-import { SaveAlt } from "@material-ui/icons"
+import { Button, Typography, Container, Snackbar, IconButton } from "@material-ui/core"
 import { useState, useEffect, useContext } from "react"
 import Record from "../components/Record"
 import Timer from "react-compound-timer"
@@ -71,8 +70,7 @@ export default function Home({ exercise }) {
 			})
 	}
 
-	function handleSubmit(e) {
-		e.preventDefault()
+	function handleSubmit() {
 
 		var data = {
 			user: JSON.parse(token.split("~")[1]).data.id,
@@ -190,9 +188,9 @@ export default function Home({ exercise }) {
 
 	return (
 		<>
-			<AppBar back={-1} />
+			<AppBar back={-1} extraButton={<IconButton onClick={() => handleSubmit()} style={{gridColumnStart: "6", justifySelf: "end", textTransform: "uppercase", fontWeight: "700", fontSize: "0.9375rem", color: "#cacaca"}}>Save</IconButton>} />
 			<Container className="viewContainer">
-				{isLoading ? <Spinner /> : <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
+				{isLoading ? <Spinner /> : <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "1em" }}>
 					<Typography className="text" variant="h5" component="h1">{exerciseObject.title}</Typography>
 
 					{prevSet.sets ?
@@ -229,8 +227,7 @@ export default function Home({ exercise }) {
 							</>
 						)}
 					</Timer>
-					<Button type="submit" variant="contained" endIcon={<SaveAlt />}>Save</Button>
-				</form>}
+				</div>}
 			</Container>
 			<Snackbar open={open} message={snackbarMessage} autoHideDuration={5000} onClose={handleClose} />
 		</>
